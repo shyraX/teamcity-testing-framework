@@ -34,7 +34,7 @@ public class CheckedProject extends Request implements CrudInterface {
     }
 
     @Override
-    public Object delete(String id) {
+    public String delete(String id) {
         return new UncheckedProject(spec)
                 .delete(id)
                 .then()
