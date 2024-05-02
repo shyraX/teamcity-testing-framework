@@ -3,12 +3,15 @@ package com.example.teamcity.api.generators;
 import com.example.teamcity.api.models.BuildType;
 import com.example.teamcity.api.models.NewProjectDescription;
 import com.example.teamcity.api.models.Project;
+import com.example.teamcity.api.models.Properties;
+import com.example.teamcity.api.models.Property;
 import com.example.teamcity.api.models.Role;
 import com.example.teamcity.api.models.Roles;
-import com.example.teamcity.api.models.ServerAuthSettings;
+import com.example.teamcity.api.models.Step;
 import com.example.teamcity.api.models.User;
 
 import java.util.Collections;
+import java.util.List;
 
 public class TestDataGenerator {
 
@@ -36,11 +39,6 @@ public class TestDataGenerator {
                 .copyAllAssociatedSettings(true)
                 .build();
 
-        var authSettings = ServerAuthSettings.builder()
-                .perProjectPermissions(true)
-                .guestUsername("guest")
-                .build();
-
         var buildType = BuildType.builder()
                 .id(RandomData.getString())
                 .name(RandomData.getString())
@@ -50,7 +48,6 @@ public class TestDataGenerator {
         return TestData.builder()
                 .user(user)
                 .project(projectDescription)
-                .authSettings(authSettings)
                 .buildType(buildType)
                 .build();
     }
@@ -58,5 +55,15 @@ public class TestDataGenerator {
     public static Roles generateRoles(com.example.teamcity.api.enums.Role role, String scope) {
         return Roles.builder().role(Collections.singletonList(Role.builder()
                 .roleId(role.getText()).scope(scope).build())).build();
+    }
+
+    public static Step generateBuildConfigurationSteps(String name, String type, List<Property> properties) {
+        return Step.builder().name(name).type(type).properties(
+                        Properties.builder().property(properties).build())
+                .build();
+    }
+
+    public static Property generateStepProperty(String name, String value) {
+        return Property.builder().name(name).value(value).build();
     }
 }

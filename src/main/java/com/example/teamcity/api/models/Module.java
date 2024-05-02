@@ -9,12 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BuildType {
-    private String id;
-    private NewProjectDescription project;
+public class Module {
     private String name;
-    private Steps steps;
-    private String projectId;
-    private String projectName;
-
 }
