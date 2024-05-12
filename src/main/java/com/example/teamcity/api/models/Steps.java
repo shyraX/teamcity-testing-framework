@@ -5,11 +5,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Builder
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class ServerAuthSettings {
-    private Boolean perProjectPermissions;
-    private Modules modules;
+@AllArgsConstructor
+public class Steps {
+    private List<Step> step;
 }

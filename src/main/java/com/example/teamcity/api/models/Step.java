@@ -7,14 +7,10 @@ import lombok.NoArgsConstructor;
 
 @Builder
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class BuildType {
-    private String id;
-    private NewProjectDescription project;
+@AllArgsConstructor
+public class Step {
     private String name;
-    private Steps steps;
-    private String projectId;
-    private String projectName;
-
+    private String type;
+    private Properties properties;
 }
