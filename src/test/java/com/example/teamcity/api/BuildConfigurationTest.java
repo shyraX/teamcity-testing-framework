@@ -1,4 +1,4 @@
-package com.example.teamcity;
+package com.example.teamcity.api;
 
 import com.example.teamcity.api.generators.RandomData;
 import com.example.teamcity.api.generators.TestDataGenerator;
