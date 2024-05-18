@@ -8,12 +8,12 @@ import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$$;
 
-public class ProjectsPage extends FavoritesPage {
+public class FavoriteProjectPage extends FavoritesPage {
 
     private static final String FAVORITE_PROJECTS_URL = "/favorite/projects";
     private final ElementsCollection subprojects = $$(".Subproject__container--Px");
 
-    public ProjectsPage open() {
+    public FavoriteProjectPage open() {
         Selenide.open(FAVORITE_PROJECTS_URL);
         waitUntilFavoritePageIsLoaded();
         return this;

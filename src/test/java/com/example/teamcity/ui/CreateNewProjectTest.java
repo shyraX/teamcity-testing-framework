@@ -1,7 +1,8 @@
 package com.example.teamcity.ui;
 
-import com.example.teamcity.ui.pages.favorites.ProjectsPage;
-import com.example.teamcity.ui.pages.admin.CreateNewProject;
+import com.example.teamcity.api.enums.Errors;
+import com.example.teamcity.ui.pages.favorites.FavoriteProjectPage;
+import com.example.teamcity.ui.pages.admin.CreateNewProjectPage;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Condition.text;
@@ -12,18 +13,37 @@ public class CreateNewProjectTest extends BaseUiTest {
     void authorizedUserShouldBeAbleCreateNewProject() {
 
         var testData = testDataStorage.addTestData();
-        var url = "https://github.com/AlexPshe/spring-core-for-qa";
 
         loginAsUser(testData.getUser());
 
-        new CreateNewProject()
+        new CreateNewProjectPage()
                 .open(testData.getProject().getParentProject().getLocator())
-                .createProjectByUrl(url)
+                .createProjectByUrl(REPOSITORY_URL)
                 .setupProject(testData.getProject().getName(), testData.getBuildType().getName());
 
-        new ProjectsPage().open()
+        new FavoriteProjectPage().open()
                 .getSubprojects()
                 .stream().reduce((first, second) -> second).get()
                 .getHeader().shouldHave(text(testData.getProject().getName()));
+    }
+
+    @Test
+    void creatingProjectsWithSameNameShouldNotBeAvailable() {
+
+        var testData = testDataStorage.addTestData();
+
+        loginAsUser(testData.getUser());
+
+        new CreateNewProjectPage()
+                .open(testData.getProject().getParentProject().getLocator())
+                .createProjectByUrl(REPOSITORY_URL)
+                .setupProject(testData.getProject().getName(), testData.getBuildType().getName());
+
+        new CreateNewProjectPage()
+                .open(testData.getProject().getParentProject().getLocator())
+                .createProjectByUrl(REPOSITORY_URL)
+                .setupProject(testData.getProject().getName(), testData.getBuildType().getName())
+                .checkErrorText("projectName" ,String.format(Errors.PROJECT_WITH_SAME_NAME_EXIST.getText(),
+                        testData.getProject().getName()));
     }
 }

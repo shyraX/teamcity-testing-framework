@@ -6,29 +6,30 @@ import com.example.teamcity.ui.pages.Page;
 
 import static com.example.teamcity.ui.Selectors.byId;
 
-public class CreateNewProject extends Page {
+public class CreateNewProjectPage extends Page {
 
-    private final SelenideElement urlInput = byId("url");
     private final SelenideElement projectNameInput = byId("projectName");
     private final SelenideElement buildTypeNameInput = byId("buildTypeName");
 
-    public CreateNewProject open(String parentProjectId) {
+    public CreateNewProjectPage open(String parentProjectId) {
         Selenide.open("/admin/createObjectMenu.html?projectId=" + parentProjectId + "&showMode=createProjectMenu");
         waitUntilPageIsLoaded();
         return this;
     }
 
-    public CreateNewProject createProjectByUrl(String url) {
+    public CreateNewProjectPage createProjectByUrl(String url) {
         urlInput.setValue(url);
         submit();
         return this;
     }
 
-    public void setupProject(String projectName, String buildTypeName) {
+    public CreateNewProjectPage setupProject(String projectName, String buildTypeName) {
         projectNameInput.clear();
         projectNameInput.setValue(projectName);
         buildTypeNameInput.clear();
         buildTypeNameInput.setValue(buildTypeName);
         submit();
+        return this;
     }
+
 }
