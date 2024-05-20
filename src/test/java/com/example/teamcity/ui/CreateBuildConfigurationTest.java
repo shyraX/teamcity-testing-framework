@@ -24,6 +24,8 @@ public class CreateBuildConfigurationTest extends BaseUiTest {
                 .getBuild()
                 .stream().reduce((first, second) -> second).get()
                 .getBuildName().shouldHave(Condition.text(testData.getBuildType().getName()));
+
+        checkedWithSuperUser.getBuildConfigRequest().get(testData.getBuildType().getName());
     }
 
     @Test

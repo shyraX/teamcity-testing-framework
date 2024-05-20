@@ -1,8 +1,8 @@
 package com.example.teamcity.ui;
 
 import com.example.teamcity.api.enums.Errors;
-import com.example.teamcity.ui.pages.favorites.FavoriteProjectPage;
 import com.example.teamcity.ui.pages.admin.CreateNewProjectPage;
+import com.example.teamcity.ui.pages.favorites.FavoriteProjectPage;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Condition.text;
@@ -25,6 +25,8 @@ public class CreateNewProjectTest extends BaseUiTest {
                 .getSubprojects()
                 .stream().reduce((first, second) -> second).get()
                 .getHeader().shouldHave(text(testData.getProject().getName()));
+
+        checkedWithSuperUser.getProjectRequest().get(testData.getProject().getName());
     }
 
     @Test
