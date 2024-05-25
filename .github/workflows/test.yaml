@@ -70,10 +70,10 @@ jobs:
       - name: Set up TeamCity agent
         run: ./mvnw test -Dtest=AgentSetupTest#setupAgentTest
 
-      - name: Run UI tests
-        run: ./mvnw test -DsuiteXmlFile=testng-suites/ui-suite.xml
-        timeout-minutes: 30
-
       - name: Run API tests
         run: ./mvnw test -DsuiteXmlFile=testng-suites/api-suite.xml
+        timeout-minutes: 30
+
+      - name: Run UI tests
+        run: ./mvnw test -DsuiteXmlFile=testng-suites/ui-suite.xml
         timeout-minutes: 30
