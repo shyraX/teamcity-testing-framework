@@ -29,6 +29,9 @@ jobs:
       - name: Pull Selenoid Firefox
         run: docker pull selenoid/vnc:firefox_114.0
 
+      - name: Setup config browsers
+        run: echo -e "browser=firefox\nremote=http://localhost:4444/wd/hub" >> src/main/resources/config.properties
+
       - name: Run Selenoid
         run: |
           docker run -d --name selenoid \
