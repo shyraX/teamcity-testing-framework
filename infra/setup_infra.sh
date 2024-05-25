@@ -53,7 +53,7 @@ echo "Start selenoid"
 
 cd .. && cd $selenoid_workdir
 mkdir config
-cp $teamcity_tests_directory/infra/brosers.json config/
+cp $teamcity_tests_directory/infra/browsers.json config/
 
 docker run -d                                   \
             --name $selenoid_container_name                                 \
