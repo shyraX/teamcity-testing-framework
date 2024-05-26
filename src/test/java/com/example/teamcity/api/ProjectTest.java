@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 
 import static com.example.teamcity.api.enums.Errors.EMPTY_PROJECT_ID;
 import static com.example.teamcity.api.enums.Errors.EMPTY_PROJECT_NAME;
+import static com.example.teamcity.api.enums.Errors.PROJECT_WITH_SAME_ID_EXIST;
 import static com.example.teamcity.api.enums.Errors.PROJECT_WITH_SAME_NAME_EXIST;
 
 public class ProjectTest extends BaseApiTest {
@@ -67,7 +68,7 @@ public class ProjectTest extends BaseApiTest {
 
         uncheckedWithSuperUser.getProjectRequest().create(project)
                 .then().assertThat().statusCode(HttpStatus.SC_BAD_REQUEST)
-                .body(Matchers.containsString(String.format(PROJECT_WITH_SAME_NAME_EXIST.getText(), project.getId())));
+                .body(Matchers.containsString(String.format(PROJECT_WITH_SAME_ID_EXIST.getText(), project.getId())));
     }
 
     @Test
