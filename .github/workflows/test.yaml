@@ -30,7 +30,7 @@ jobs:
         run: docker pull selenoid/vnc:chrome_91.0
 
       - name: Setup config browsers
-        run: echo -e "browser=firefox\nremote=http://$HOST:4444/wd/hub" >> src/main/resources/config.properties
+        run: echo -e "browser=chrome\nremote=http://$HOST:4444/wd/hub" >> src/main/resources/config.properties
 
       - name: Run Selenoid
         run: |
