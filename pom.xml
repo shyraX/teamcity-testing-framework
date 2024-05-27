@@ -21,6 +21,7 @@
         <google-gson.version>2.10.1</google-gson.version>
         <assertj-core.version>3.25.3</assertj-core.version>
         <selenide.version>7.3.1</selenide.version>
+        <suiteXmlFile>testng-suites/api-suite.xml</suiteXmlFile>
     </properties>
 
     <dependencies>
@@ -96,6 +97,9 @@
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+                    </suiteXmlFiles>
                     <systemProperties>
                         <property>
                             <name>allure.results.directory</name>

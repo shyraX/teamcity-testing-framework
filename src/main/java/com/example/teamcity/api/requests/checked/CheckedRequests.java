@@ -9,11 +9,13 @@ public class CheckedRequests {
     private final CheckedProject projectRequest;
     private final CheckedBuildConfig buildConfigRequest;
     private final AuthRequest authRequest;
+    private final CheckedAgents checkedAgents;
 
     public CheckedRequests(RequestSpecification spec) {
         this.userRequest = new CheckedUser(spec);
         this.buildConfigRequest = new CheckedBuildConfig(spec);
         this.projectRequest = new CheckedProject(spec);
         this.authRequest = new AuthRequest(spec);
+        this.checkedAgents = new CheckedAgents(spec);
     }
 }

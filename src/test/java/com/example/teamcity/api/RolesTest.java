@@ -5,7 +5,7 @@ import com.example.teamcity.api.generators.TestDataGenerator;
 import com.example.teamcity.api.requests.checked.CheckedBuildConfig;
 import com.example.teamcity.api.requests.checked.CheckedProject;
 import com.example.teamcity.api.requests.uncheked.UncheckedBuildConfig;
-import com.example.teamcity.api.requests.uncheked.UncheckedProject;
+import com.example.teamcity.api.requests.uncheked.UncheckedRequests;
 import com.example.teamcity.api.spec.Specifications;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
@@ -15,11 +15,12 @@ public class RolesTest extends BaseApiTest {
     @Test
     public void unauthorizedUserShouldNotHaveRightToCreateProject() {
         var testData = testDataStorage.addTestData();
-        uncheckedWithSuperUser.getProjectRequest()
-                .create(testData.getProject())
+
+        new UncheckedRequests(Specifications.getSpec().unAuthSpec()).getProjectRequest()
+                .create(testData.getProject().getId())
                 .then().assertThat().statusCode(HttpStatus.SC_UNAUTHORIZED);
 
-        new UncheckedProject(Specifications.getSpec().authSpec(testData.getUser()))
+        uncheckedWithSuperUser.getProjectRequest()
                 .get(testData.getProject().getId())
                 .then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND);
     }

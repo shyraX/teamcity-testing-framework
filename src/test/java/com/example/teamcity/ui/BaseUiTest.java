@@ -13,7 +13,7 @@ public class BaseUiTest extends BaseTest {
     protected final static String REPOSITORY_URL = "https://github.com/AlexPshe/spring-core-for-qa";
 
     @BeforeSuite
-    void setupUiTest() {
+    public void setupUiTest() {
         Configuration.baseUrl = "http://" + Config.getProperty("host");
         Configuration.remote = Config.getProperty("remote");
         Configuration.timeout = 10000;
