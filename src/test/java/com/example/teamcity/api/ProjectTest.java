@@ -1,16 +1,15 @@
-package com.example.teamcity;
+package com.example.teamcity.api;
 
 import com.example.teamcity.api.generators.RandomData;
 import org.apache.http.HttpStatus;
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 
-public class ProjectTest extends BaseApiTest {
+import static com.example.teamcity.api.enums.Errors.EMPTY_PROJECT_ID;
+import static com.example.teamcity.api.enums.Errors.EMPTY_PROJECT_NAME;
+import static com.example.teamcity.api.enums.Errors.PROJECT_WITH_SAME_NAME_EXIST;
 
-    private static final String EMPTY_PROJECT_NAME_ERROR = "Project name cannot be empty.";
-    private static final String EMPTY_PROJECT_ID_ERROR = "Project ID must not be empty.";
-    private static final String PROJECT_WITH_SAME_NAME_EXIST_ERROR = "Project with this name already exists: %s";
-    private static final String PROJECT_WITH_SAME_ID_EXIST_ERROR = "Project ID \"%s\" is already used by another project";
+public class ProjectTest extends BaseApiTest {
 
     @Test
     void creatingProjectShouldBeAvailable() {
@@ -28,7 +27,7 @@ public class ProjectTest extends BaseApiTest {
 
         uncheckedWithSuperUser.getProjectRequest().create(testData.getProject())
                 .then().assertThat().statusCode(HttpStatus.SC_BAD_REQUEST)
-                .body(Matchers.containsString(EMPTY_PROJECT_NAME_ERROR));
+                .body(Matchers.containsString(EMPTY_PROJECT_NAME.getText()));
     }
 
     // Падает с 500 ошибкой???
@@ -40,7 +39,7 @@ public class ProjectTest extends BaseApiTest {
 
         uncheckedWithSuperUser.getProjectRequest().create(testData.getProject())
                 .then().assertThat().statusCode(HttpStatus.SC_INTERNAL_SERVER_ERROR)
-                .body(Matchers.containsString(EMPTY_PROJECT_ID_ERROR));
+                .body(Matchers.containsString(EMPTY_PROJECT_ID.getText()));
     }
 
     @Test
@@ -54,7 +53,7 @@ public class ProjectTest extends BaseApiTest {
 
         uncheckedWithSuperUser.getProjectRequest().create(project)
                 .then().assertThat().statusCode(HttpStatus.SC_BAD_REQUEST)
-                .body(Matchers.containsString(String.format(PROJECT_WITH_SAME_NAME_EXIST_ERROR, project.getName())));
+                .body(Matchers.containsString(String.format(PROJECT_WITH_SAME_NAME_EXIST.getText(), project.getName())));
     }
 
     @Test
@@ -68,7 +67,7 @@ public class ProjectTest extends BaseApiTest {
 
         uncheckedWithSuperUser.getProjectRequest().create(project)
                 .then().assertThat().statusCode(HttpStatus.SC_BAD_REQUEST)
-                .body(Matchers.containsString(String.format(PROJECT_WITH_SAME_ID_EXIST_ERROR, project.getId())));
+                .body(Matchers.containsString(String.format(PROJECT_WITH_SAME_NAME_EXIST.getText(), project.getId())));
     }
 
     @Test
