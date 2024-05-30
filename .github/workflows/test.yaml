@@ -114,6 +114,17 @@ jobs:
           allure_history: allure-history
           allure_results: target/allure-results
 
+      - name: Publish test report
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
+
+      - name: Grant execute permission to swagger-coverage-commandline
+        run: chmod +x ./swagger-coverage-commandline-1.5.0/bin/swagger-coverage-commandline
+
       - name: Run Swagger coverage
         if: always()
         run: ./swagger-coverage-commandline-1.5.0/bin/swagger-coverage-commandline -s http://$HOST:8111/app/rest/swagger.json -i target/swagger-coverage-output
