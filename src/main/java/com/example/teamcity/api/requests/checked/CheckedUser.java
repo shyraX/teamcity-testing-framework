@@ -13,6 +13,9 @@ public class CheckedUser extends Request implements CrudInterface {
         super(spec);
     }
 
+    /**
+     * @return проверенный на 200 код ответ на создание User, извлеченный как User.class
+     */
     @Override
     public User create(Object obj) {
         return new UncheckedUser(spec)
@@ -21,16 +24,25 @@ public class CheckedUser extends Request implements CrudInterface {
                 .extract().as(User.class);
     }
 
+    /**
+     * @return null, т.к. метод не реализован
+     */
     @Override
     public Object get(String id) {
         return null;
     }
 
+    /**
+     * @return null, т.к. метод не реализован
+     */
     @Override
     public Object update(String id) {
         return null;
     }
 
+    /**
+     * @return проверенный на 204 код ответ на удаление User, извлеченный как String
+     */
     @Override
     public String delete(String id) {
         return new UncheckedUser(spec)

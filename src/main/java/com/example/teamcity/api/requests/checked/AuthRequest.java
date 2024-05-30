@@ -13,6 +13,9 @@ public class AuthRequest extends Request {
         super(spec);
     }
 
+    /**
+     * @return возвращает строку с csrf токеном
+     */
     public String getCsrfToken() {
         return RestAssured
                 .given().spec(spec)

@@ -5,11 +5,17 @@ import com.codeborne.selenide.Condition;
 import com.example.teamcity.api.enums.Errors;
 import com.example.teamcity.ui.pages.admin.CreateBuildConfigurationPage;
 import com.example.teamcity.ui.pages.project.ProjectPage;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.testng.annotations.Test;
 
+@Epic("UI tests")
+@Feature("TeamCity build configuration")
 public class CreateBuildConfigurationTest extends BaseUiTest {
 
     @Test
+    @Description("Creating build configuration should be available")
     public void creatingBuildConfigurationShouldBeAvailable() {
         var testData = testDataStorage.addTestData();
 
@@ -29,6 +35,7 @@ public class CreateBuildConfigurationTest extends BaseUiTest {
     }
 
     @Test
+    @Description("Creating build configuration with same name should not be available")
     public void creatingBuildConfigurationWithSameNameShouldNotBeAvailable() {
         var testData = testDataStorage.addTestData();
 

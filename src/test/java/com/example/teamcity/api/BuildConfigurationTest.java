@@ -3,6 +3,9 @@ package com.example.teamcity.api;
 import com.example.teamcity.api.generators.RandomData;
 import com.example.teamcity.api.generators.TestDataGenerator;
 import com.example.teamcity.api.models.Steps;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.apache.http.HttpStatus;
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
@@ -14,8 +17,9 @@ import static com.example.teamcity.api.enums.Errors.BUILD_CONFIG_WITH_EMPTY_NAME
 import static com.example.teamcity.api.enums.Errors.BUILD_CONFIG_WITH_SAME_ID_EXIST;
 import static com.example.teamcity.api.enums.Errors.BUILD_CONFIG_WITH_SAME_NAME_EXIST;
 
+@Epic("Api tests")
+@Feature("TeamCity build configuration")
 public class BuildConfigurationTest extends BaseApiTest {
-
 
     private static final String BUILD_CONFIG_STEP_NAME = "print";
     private static final String BUILD_CONFIG_STEP_TYPE = "simpleRunner";
@@ -23,6 +27,7 @@ public class BuildConfigurationTest extends BaseApiTest {
     private static final String BUILD_CONFIG_PROPERTY_VALUE = "echo 'Hello, World!'";
 
     @Test
+    @Description("Creating build configuration should be available")
     void creatingBuildConfigurationShouldBeAvailable() {
 
         var testData = testDataStorage.addTestData();
@@ -33,6 +38,7 @@ public class BuildConfigurationTest extends BaseApiTest {
     }
 
     @Test
+    @Description("Creating build configuration with steps should be available")
     void creatingBuildConfigurationWithStepsShouldBeAvailable() {
 
         var testData = testDataStorage.addTestData();
@@ -49,6 +55,7 @@ public class BuildConfigurationTest extends BaseApiTest {
     }
 
     @Test
+    @Description("Creating build configuration with same name should not be available")
     void creatingBuildConfigurationWithSameNameShouldNotBeAvailable() {
 
         var testData = testDataStorage.addTestData();
@@ -64,6 +71,7 @@ public class BuildConfigurationTest extends BaseApiTest {
     }
 
     @Test
+    @Description("Creating build configuration with same id should not be available")
     void creatingBuildConfigurationWithSameIdShouldNotBeAvailable() {
 
         var testData = testDataStorage.addTestData();
@@ -77,8 +85,8 @@ public class BuildConfigurationTest extends BaseApiTest {
                 .body(Matchers.containsString(String.format(BUILD_CONFIG_WITH_SAME_ID_EXIST.getText(), buildType.getId())));
     }
 
-    // 500 error?
     @Test
+    @Description("Creating build configuration with empty id should not be available")
     void creatingBuildConfigurationWithEmptyIdShouldNotBeAvailable() {
 
         var testData = testDataStorage.addTestData();
@@ -92,6 +100,7 @@ public class BuildConfigurationTest extends BaseApiTest {
     }
 
     @Test
+    @Description("Creating build configuration with empty name should not be available")
     void creatingBuildConfigurationWithEmptyNameShouldNotBeAvailable() {
 
         var testData = testDataStorage.addTestData();

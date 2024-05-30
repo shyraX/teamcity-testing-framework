@@ -3,13 +3,19 @@ package com.example.teamcity.ui;
 import com.example.teamcity.api.enums.Errors;
 import com.example.teamcity.ui.pages.admin.CreateNewProjectPage;
 import com.example.teamcity.ui.pages.favorites.FavoriteProjectPage;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Condition.text;
 
+@Epic("UI tests")
+@Feature("TeamCity project")
 public class CreateNewProjectTest extends BaseUiTest {
 
     @Test
+    @Description("Authorized user should be able create new project")
     void authorizedUserShouldBeAbleCreateNewProject() {
 
         var testData = testDataStorage.addTestData();
@@ -30,6 +36,7 @@ public class CreateNewProjectTest extends BaseUiTest {
     }
 
     @Test
+    @Description("Creating projects with same name should not be available")
     void creatingProjectsWithSameNameShouldNotBeAvailable() {
 
         var testData = testDataStorage.addTestData();

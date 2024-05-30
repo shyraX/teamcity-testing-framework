@@ -15,11 +15,19 @@ public class StartUpPage extends Page {
     private final SelenideElement proceedButton = Selectors.byId("proceedButton");
     private final SelenideElement acceptLicense = Selectors.byId("accept");
 
+    /**
+     * Переход на начальную страницу
+     * @return текущий экземпляр StartUpPage
+     */
     public StartUpPage open() {
         Selenide.open("/mnt");
         return this;
     }
 
+    /**
+     * Принятие пользовательского соглашения и создание базы
+     * @return текущий экземпляр StartUpPage
+     */
     public StartUpPage startUpTeamcityServer() {
         waitUntilPageIsLoaded();
         proceedButton.click();

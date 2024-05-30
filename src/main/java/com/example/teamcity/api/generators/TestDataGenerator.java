@@ -15,6 +15,10 @@ import java.util.List;
 
 public class TestDataGenerator {
 
+    private TestDataGenerator() {
+
+    }
+
     public static TestData generate() {
 
         var user = User.builder()

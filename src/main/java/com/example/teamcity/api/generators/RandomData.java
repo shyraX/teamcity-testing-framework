@@ -6,6 +6,10 @@ public class RandomData {
 
     private static final int LENGTH = 10;
 
+    private RandomData() {
+
+    }
+
     public static String getString() {
         return "test_" + RandomStringUtils.randomAlphabetic(LENGTH);
     }

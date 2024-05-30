@@ -1,6 +1,9 @@
 package com.example.teamcity.api;
 
 import com.example.teamcity.api.generators.RandomData;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.apache.http.HttpStatus;
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
@@ -10,9 +13,12 @@ import static com.example.teamcity.api.enums.Errors.EMPTY_PROJECT_NAME;
 import static com.example.teamcity.api.enums.Errors.PROJECT_WITH_SAME_ID_EXIST;
 import static com.example.teamcity.api.enums.Errors.PROJECT_WITH_SAME_NAME_EXIST;
 
+@Epic("API tests")
+@Feature("TeamCity project")
 public class ProjectTest extends BaseApiTest {
 
     @Test
+    @Description("Creating project should be available")
     void creatingProjectShouldBeAvailable() {
         var testData = testDataStorage.addTestData();
         var project = checkedWithSuperUser.getProjectRequest().create(testData.getProject());
@@ -21,6 +27,7 @@ public class ProjectTest extends BaseApiTest {
     }
 
     @Test
+    @Description("Creating project with empty name should not be available")
     void creatingProjectWithEmptyNameShouldNotBeAvailable() {
 
         var testData = testDataStorage.addTestData();
@@ -33,6 +40,7 @@ public class ProjectTest extends BaseApiTest {
 
     // Падает с 500 ошибкой???
     @Test
+    @Description("Creating project with empty id should not be available")
     void creatingProjectWithEmptyIdShouldNotBeAvailable() {
 
         var testData = testDataStorage.addTestData();
@@ -44,6 +52,7 @@ public class ProjectTest extends BaseApiTest {
     }
 
     @Test
+    @Description("Creating projects with same name should not be available")
     void creatingProjectsWithSameNameShouldNotBeAvailable() {
         var testData = testDataStorage.addTestData();
 
@@ -58,6 +67,7 @@ public class ProjectTest extends BaseApiTest {
     }
 
     @Test
+    @Description("Creating projects with same id should not be available")
     void creatingProjectsWithSameIdShouldNotBeAvailable() {
         var testData = testDataStorage.addTestData();
 
@@ -72,6 +82,7 @@ public class ProjectTest extends BaseApiTest {
     }
 
     @Test
+    @Description("Creating project in another project should be available")
     void creatingProjectInAnotherProjectShouldBeAvailable() {
         var firstTestData = testDataStorage.addTestData();
         var secondTestData = testDataStorage.addTestData();
@@ -85,6 +96,7 @@ public class ProjectTest extends BaseApiTest {
     }
 
     @Test
+    @Description("Creating project with same name in different parents should be available")
     void creatingProjectWithSameNameInDifferentParentsShouldBeAvailable() {
         var firstTestData = testDataStorage.addTestData();
         var secondTestData = testDataStorage.addTestData();

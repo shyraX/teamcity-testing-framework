@@ -14,7 +14,9 @@ public class Specifications {
 
     private static Specifications spec;
 
-    private Specifications() {}
+    private Specifications() {
+
+    }
 
     public static Specifications getSpec() {
         if (spec == null) {
@@ -39,7 +41,8 @@ public class Specifications {
 
     public RequestSpecification authSpec(User user) {
         var requestBuilder = reqBuilder();
-        requestBuilder.setBaseUri("http://" + user.getUsername() + ":" + user.getPassword() + "@" + Config.getProperty("host"));
+        requestBuilder.setBaseUri("http://" + user.getUsername() + ":" + user.getPassword() + "@"
+                + Config.getProperty("host"));
         return requestBuilder.build();
     }
 

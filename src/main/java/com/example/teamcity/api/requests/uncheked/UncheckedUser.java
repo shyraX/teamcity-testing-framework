@@ -10,34 +10,46 @@ import static io.restassured.RestAssured.given;
 public class UncheckedUser extends Request implements CrudInterface {
 
 
-    private final static String USER_ENDPOINT = "/app/rest/users";
+    private final String userEndpoint = "/app/rest/users";
 
     public UncheckedUser(RequestSpecification spec) {
         super(spec);
     }
 
+    /**
+     * @return ответ от POST запроса на создание пользователя
+     */
     @Override
     public Response create(Object obj) {
         return given()
                 .spec(spec)
                 .body(obj)
-                .post(USER_ENDPOINT);
+                .post(userEndpoint);
     }
 
+    /**
+     * @return ответ от GET запроса на получение пользователя
+     */
     @Override
     public Object get(String id) {
         return null;
     }
 
+    /**
+     * @return ответ от PUT запроса на изменение пользователя
+     */
     @Override
     public Object update(String id) {
         return null;
     }
 
+    /**
+     * @return ответ от DELETE запроса на удаление пользователя
+     */
     @Override
     public Response delete(String id) {
         return given()
                 .spec(spec)
-                .delete(USER_ENDPOINT + "/username:" + id);
+                .delete(userEndpoint + "/username:" + id);
     }
 }
