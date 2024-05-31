@@ -17,7 +17,7 @@ import static com.example.teamcity.api.enums.Errors.BUILD_CONFIG_WITH_EMPTY_NAME
 import static com.example.teamcity.api.enums.Errors.BUILD_CONFIG_WITH_SAME_ID_EXIST;
 import static com.example.teamcity.api.enums.Errors.BUILD_CONFIG_WITH_SAME_NAME_EXIST;
 
-@Epic("Api tests")
+@Epic("API tests")
 @Feature("TeamCity build configuration")
 public class BuildConfigurationTest extends BaseApiTest {
 
