@@ -7,12 +7,18 @@ import com.example.teamcity.api.requests.checked.CheckedProject;
 import com.example.teamcity.api.requests.uncheked.UncheckedBuildConfig;
 import com.example.teamcity.api.requests.uncheked.UncheckedRequests;
 import com.example.teamcity.api.spec.Specifications;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 
+@Epic("API tests")
+@Feature("TeamCity roles")
 public class RolesTest extends BaseApiTest {
 
     @Test
+    @Description("Unauthorized user should not have rights to create project")
     public void unauthorizedUserShouldNotHaveRightToCreateProject() {
         var testData = testDataStorage.addTestData();
 
@@ -26,6 +32,7 @@ public class RolesTest extends BaseApiTest {
     }
 
     @Test
+    @Description("System admin test should have rights to create project")
     public void systemAdminTestShouldHaveRightsToCreateProject() {
         var testData = testDataStorage.addTestData();
 
@@ -40,6 +47,7 @@ public class RolesTest extends BaseApiTest {
     }
 
     @Test
+    @Description("Project admin should have rights to create build config to his project")
     public void projectAdminShouldHaveRightsToCreateBuildConfigToHisProject() {
         var testData = testDataStorage.addTestData();
 
@@ -57,6 +65,7 @@ public class RolesTest extends BaseApiTest {
     }
 
     @Test
+    @Description("Project admin should not have rights to create build config to another project")
     public void projectAdminShouldNotHaveRightsToCreateBuildConfigToAnotherProject() {
         var firstTestData = testDataStorage.addTestData();
         var secondTestData = testDataStorage.addTestData();

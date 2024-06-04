@@ -14,12 +14,18 @@ public class UncheckedAgents extends Request {
         super(spec);
     }
 
+    /**
+     * @return ответ от GET запроса на поиск агента
+     */
     public Response get() {
         return given()
                 .spec(spec)
                 .get(AGENTS_ENDPOINT + "?locator=authorized:any");
     }
 
+    /**
+     * @return ответ от PUT запроса на добавление агента
+     */
     public Response put(String id, String body) {
         return given()
                 .spec(spec)

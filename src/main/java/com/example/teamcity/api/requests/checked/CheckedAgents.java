@@ -12,6 +12,9 @@ public class CheckedAgents extends Request {
         super(spec);
     }
 
+    /**
+     * @return проверенный на 200 код ответ, извлеченный как Agent.class
+     */
     public Agents get() {
         return new UncheckedAgents(spec)
                 .get()
@@ -21,6 +24,9 @@ public class CheckedAgents extends Request {
                 .as(Agents.class);
     }
 
+    /**
+     * @return проверенный на 200 код ответ, извлеченный как String
+     */
     public String put(String id, String body) {
         return new UncheckedAgents(spec)
                 .put(id, body)

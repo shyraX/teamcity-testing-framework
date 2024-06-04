@@ -20,7 +20,7 @@ public class TestData {
     private ServerAuthSettings authSettings;
 
 
-    public void delete() {
+    public final void delete() {
         var spec = Specifications.getSpec().superUserSpec();
 
         if (project != null && !(project.getId().isEmpty()) && !(project.getName().isEmpty())) {

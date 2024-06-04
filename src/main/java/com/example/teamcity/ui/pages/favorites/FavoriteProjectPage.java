@@ -13,12 +13,19 @@ public class FavoriteProjectPage extends FavoritesPage {
     private static final String FAVORITE_PROJECTS_URL = "/favorite/projects";
     private final ElementsCollection subprojects = $$(".Subproject__container--Px");
 
+    /**
+     * Переход на страницу
+     * @return текущий экземпляр FavouriteProjectsPage
+     */
     public FavoriteProjectPage open() {
         Selenide.open(FAVORITE_PROJECTS_URL);
         waitUntilFavoritePageIsLoaded();
         return this;
     }
 
+    /**
+     * @return коллекцию найденных ProjectElement на странице проектов
+     */
     public List<ProjectElement> getSubprojects() {
         return generatePageElements(subprojects, ProjectElement::new);
     }

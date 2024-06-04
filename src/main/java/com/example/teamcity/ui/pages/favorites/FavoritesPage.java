@@ -9,8 +9,12 @@ import java.time.Duration;
 import static com.example.teamcity.ui.Selectors.byClass;
 
 public class FavoritesPage extends Page {
+
     private final SelenideElement header = byClass("ring-heading-heading");
 
+    /**
+     * Ожидание полной загрузки страницы
+     */
     public void waitUntilFavoritePageIsLoaded() {
         waitUntilPageIsLoaded();
         header.shouldBe(Condition.visible, Duration.ofSeconds(10));

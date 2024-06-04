@@ -13,6 +13,9 @@ public class CheckedBuildConfig extends Request implements CrudInterface {
         super(spec);
     }
 
+    /**
+     * @return проверенный на 200 код ответ на создание BuildType, извлеченный как BuildType.class
+     */
     @Override
     public BuildType create(Object obj) {
         return new UncheckedBuildConfig(spec).create(obj)
@@ -20,6 +23,9 @@ public class CheckedBuildConfig extends Request implements CrudInterface {
                 .extract().as(BuildType.class);
     }
 
+    /**
+     * @return проверенный на 200 код ответ на получение BuildType, извлеченный как BuildType.class
+     */
     @Override
     public BuildType get(String id) {
         return new UncheckedBuildConfig(spec).get(id)
@@ -27,11 +33,17 @@ public class CheckedBuildConfig extends Request implements CrudInterface {
                 .extract().as(BuildType.class);
     }
 
+    /**
+     * @return null, т.к. метод не реализован
+     */
     @Override
     public Object update(String id) {
         return null;
     }
 
+    /**
+     * @return проверенный на 204 код ответ на удаление BuildType, извлеченный как BuildType.class
+     */
     @Override
     public String delete(String id) {
         return new UncheckedBuildConfig(spec).delete(id)

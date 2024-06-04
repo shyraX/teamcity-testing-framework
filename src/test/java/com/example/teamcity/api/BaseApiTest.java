@@ -5,6 +5,7 @@ import com.example.teamcity.api.models.Module;
 import com.example.teamcity.api.models.Modules;
 import com.example.teamcity.api.models.ServerAuthSettings;
 import com.example.teamcity.api.spec.Specifications;
+import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import org.testng.annotations.BeforeSuite;
 
@@ -15,6 +16,7 @@ public class BaseApiTest extends BaseTest {
     private static final String AUTH_SETTINGS_ENDPOINT = "/app/rest/server/authSettings";
 
     @BeforeSuite
+    @Step("Enable project permissions")
     public void setup() {
         enableProjectPermissions();
     }

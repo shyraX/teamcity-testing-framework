@@ -13,6 +13,9 @@ public class CheckedProject extends Request implements CrudInterface {
         super(spec);
     }
 
+    /**
+     * @return проверенный на 200 код ответ на создание Project, извлеченный как Project.class
+     */
     @Override
     public Project create(Object obj) {
         return new UncheckedProject(spec).create(obj)
@@ -20,6 +23,9 @@ public class CheckedProject extends Request implements CrudInterface {
                 .extract().as(Project.class);
     }
 
+    /**
+     * @return проверенный на 200 код ответ на получение Project, извлеченный как Project.class
+     */
     @Override
     public Project get(String id) {
         return new UncheckedProject(spec)
@@ -28,11 +34,17 @@ public class CheckedProject extends Request implements CrudInterface {
                 .extract().as(Project.class);
     }
 
+    /**
+     * @return null, т.к. метод не реализован
+     */
     @Override
     public Object update(String id) {
         return null;
     }
 
+    /**
+     * @return проверенный на 200 код ответ на удаление Project, извлеченный как String
+     */
     @Override
     public String delete(String id) {
         return new UncheckedProject(spec)

@@ -7,6 +7,10 @@ import java.util.HashMap;
 
 public class BrowserSettings {
 
+    private BrowserSettings() {
+
+    }
+
     public static void setUp(String browser) {
         Configuration.browser = browser;
 

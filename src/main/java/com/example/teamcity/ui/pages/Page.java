@@ -26,25 +26,43 @@ public class Page {
     protected final SelenideElement urlInput = byId("url");
     private final SelenideElement submitAnywayButton = byId("submitAnywayButton");
 
+    /**
+     * Нажатие на кнопку подтверждения
+     */
     public void submit() {
         submitButton.click();
         waitUntilDataIsSaved();
     }
 
+    /**
+     * Нажатие на кнопку подтверждения в предупреждающем модальном окне
+     */
     public Page submitAnyway() {
         submitAnywayButton.click();
         waitUntilDataIsSaved();
         return this;
     }
 
+    /**
+     * Ожидание полной загрузки страницы
+     */
     public void waitUntilPageIsLoaded() {
         pageWaitingMarker.shouldNotBe(visible, Duration.ofSeconds(30));
     }
 
+    /**
+     * Ожидание сохранения данных на странице
+     */
     public void waitUntilDataIsSaved() {
         savingWaitingMarker.shouldNotBe(visible, Duration.ofSeconds(20));
     }
 
+    /**
+     * @param collection - коллекция элементов, которую ожидается найти на странице
+     * @param creator - объект класса Function, который используется для создания элемента
+     * @param <T> - класс наследник PageElement
+     * @return коллекция созданных PageElement
+     */
     public <T extends PageElement> List<T> generatePageElements(
             ElementsCollection collection,
             Function<SelenideElement, T> creator) {
@@ -53,6 +71,11 @@ public class Page {
         return elements;
     }
 
+    /**
+     * Проверить текст ошибки
+     * @param id - элемента содержащего ошибку
+     * @param errorText - ожидаемый текст ошибки
+     */
     public void checkErrorText(String id, String errorText) {
         errors.findBy(id("error_" + id)).shouldHave(text(errorText));
     }

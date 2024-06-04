@@ -18,6 +18,10 @@ public class ProjectPage extends Page {
     private final ElementsCollection builds = $$(".BuildTypes__item--UX");
     private final SelenideElement ringTab = Selectors.byDataTest("ring-tab");
 
+    /**
+     * Переход на страницу
+     * @return текущий экземпляр ProjectPage
+     */
     public ProjectPage open(String projectId) {
         Selenide.open(String.format(PROJECT_URL, projectId));
         waitUntilPageIsLoaded();
@@ -25,7 +29,10 @@ public class ProjectPage extends Page {
         return this;
     }
 
-    public List<BuildElement> getBuild(){
+    /**
+     * @return коллекцию найденных BuildElement на странице билдов
+     */
+    public List<BuildElement> getBuild() {
         return generatePageElements(builds, BuildElement::new);
     }
 }

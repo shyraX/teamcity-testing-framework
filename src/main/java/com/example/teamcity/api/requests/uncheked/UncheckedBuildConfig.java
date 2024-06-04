@@ -15,22 +15,34 @@ public class UncheckedBuildConfig extends Request implements CrudInterface {
         super(spec);
     }
 
+    /**
+     * @return ответ от POST запроса на создание билд конфигурации
+     */
     @Override
     public Response create(Object obj) {
         return given().spec(spec).body(obj)
                 .post(BUILD_CONFIG_ENDPOINT);
     }
 
+    /**
+     * @return ответ от GET запроса на получение билд конфигурации
+     */
     @Override
     public Response get(String name) {
         return given().spec(spec).get(BUILD_CONFIG_ENDPOINT + "/name:" + name);
     }
 
+    /**
+     * @return ответ от PUT запроса на изменение билд конфигурации
+     */
     @Override
     public Object update(String id) {
         return null;
     }
 
+    /**
+     * @return ответ от DELETE запроса на удаление билд конфигурации
+     */
     @Override
     public Response delete(String id) {
         return given().spec(spec).delete(BUILD_CONFIG_ENDPOINT + "/id:" + id);

@@ -6,16 +6,20 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class Selectors {
 
+    private Selectors() {
+
+    }
+
     public static SelenideElement byId(String value) {
-        return $("[id='"+ value +"']");
+        return $("[id='" + value + "']");
     }
 
     public static SelenideElement byType(String value) {
-        return $("[type='"+ value +"']");
+        return $("[type='" + value + "']");
     }
 
     public static SelenideElement byDataTest(String value) {
-        return $("[data-test='"+ value +"']");
+        return $("[data-test='" + value + "']");
     }
 
     public static SelenideElement byClass(String value) {
